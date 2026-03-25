@@ -1,119 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useActionState, useEffect, useRef, useState } from 'react';
+import './index.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    function handleGlobalMouseUp(e) {
+
+      if (!inputRef.current) return;
+
+      // sprawdza czy puszczenie myszki bylo w inpucie
+      const isInsideSearch = inputRef.current.contains(e.target);
+
+      if (isInsideSearch) {
+      } else {
+        inputRef.current.blur(); // usuwa focus
+      }
+    };
+
+    // nasłuchiwanie na całym oknie
+    window.addEventListener('mouseup', handleGlobalMouseUp);
+
+    return () => window.removeEventListener('mouseup', handleGlobalMouseUp);
+  }, []);
+  const [sekundy, setSekundy] = useState("")
+  const [data, setData] = useState("");
+  useEffect(() => {
+    let time = setInterval(() => {
+
+      let currentTime = new Date().toLocaleTimeString('pl-PL', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+
+      setSekundy(currentTime);
+    }, 1000);
+    setData(new Date().toLocaleDateString('pl-PL'));
+    return () => clearInterval(time);
+  }, []);
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+      <div className='taskbar'>
+        <div className='icon-container'>
+          <div className="icon-wrapper">
+            <img src="../assets/win11.png" className='icon win-icon' />
+          </div>
+          <div className="search-wrapper">
+            <span className="search-icon">🔍</span>
+            <input type="text" placeholder="Search" ref={inputRef} className="input" />
+          </div>
+          <div className="icon-wrapper">
+            <img src='../assets/file explorer.png' className='icon' />
+          </div>
+          <div className="right-option">
+            <p>{sekundy} {data}</p>
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      </div>
     </>
   )
 }
