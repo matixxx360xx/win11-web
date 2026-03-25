@@ -1,7 +1,8 @@
 import { useActionState, useEffect, useRef, useState } from 'react';
-import './index.css'
+import './Pulpit.css'
+import FileExplorer from './File-Explorer';
 
-function App() {
+function Pulpit() {
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -40,9 +41,14 @@ function App() {
     return () => clearInterval(time);
   }, []);
 
+
+  const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
+  
   return (
     <>
-
+      {isFileExplorerOpen && (
+        <FileExplorer onClose={() => setIsFileExplorerOpen(false)} />
+      )}
       <div className='taskbar'>
         <div className='icon-container'>
           <div className="icon-wrapper">
@@ -53,7 +59,7 @@ function App() {
             <input type="text" placeholder="Search" ref={inputRef} className="input" />
           </div>
           <div className="icon-wrapper">
-            <img src='../assets/file explorer.png' className='icon' />
+            <img src='../assets/file explorer.png' className='icon' onClick={() => setIsFileExplorerOpen(true)} />
           </div>
           <div className="right-option">
             <p>{sekundy} {data}</p>
@@ -64,4 +70,4 @@ function App() {
   )
 }
 
-export default App
+export default Pulpit
