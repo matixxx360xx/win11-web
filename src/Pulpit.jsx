@@ -1,6 +1,9 @@
 import { useActionState, useEffect, useRef, useState } from 'react';
 import './Pulpit.css'
 import FileExplorer from './File-Explorer';
+import StartMenu from './Start-Men';
+import SearchMenu from './Search-Menu';
+import HideIcon from './Hide-icon';
 
 function Pulpit() {
   const inputRef = useRef(null);
@@ -24,6 +27,7 @@ function Pulpit() {
 
     return () => window.removeEventListener('mouseup', handleGlobalMouseUp);
   }, []);
+
   const [sekundy, setSekundy] = useState("")
   const [data, setData] = useState("");
   useEffect(() => {
@@ -43,26 +47,101 @@ function Pulpit() {
 
 
   const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
-  
+
+  const [isStartMenuOpen, setStartMenuOpen] = useState(false);
+  const [isMenuClosing, setIsMenuClosing] = useState(false);
+
+  const [isSearchMenuOpen, setIsSearchOpen] = useState(false);
+  const [isSearchMenuClosing, setIsSearchClosing] = useState(false);
+
+  const [isArrowOpen, setIsArrowOpen] = useState(false);
+  const [isArrrowClosing, setIsArrowClosing] = useState(false);
+
+  function HandleClikFileExplorer() {
+    const fileExplorer = document.querySelector('.file-explorer');
+    if (fileExplorer) {
+      fileExplorer.querySelector('.Close')?.click();
+    } else {
+      setIsFileExplorerOpen(true);
+    }
+  }
+
+  function HandleClikStartMenu() {
+    if (isStartMenuOpen) {
+      setIsMenuClosing(true);
+      setTimeout(() => {
+        setStartMenuOpen(false);
+        setIsMenuClosing(false);
+      }, 150);
+    } else {
+      setStartMenuOpen(true);
+    }
+  }
+
+  function HandleClikInput() {
+    if (isSearchMenuOpen) {
+      setIsSearchClosing(true);
+      setTimeout(() => {
+        setIsSearchOpen(false);
+        setIsSearchClosing(false);
+      }, 150);
+    } else {
+      setIsSearchOpen(true);
+    }
+  }
+
+  function ArrowClick(){
+    if (isArrowOpen){
+      setIsArrowClosing(true);
+      setTimeout(() => {
+          setIsArrowOpen(false);
+          setIsArrowClosing(false);
+      },150);
+    } else{
+      setIsArrowOpen(true);
+    }
+  }
+
   return (
     <>
       {isFileExplorerOpen && (
         <FileExplorer onClose={() => setIsFileExplorerOpen(false)} />
       )}
+      {isStartMenuOpen && (
+        <StartMenu isClosing={isMenuClosing} />
+      )}
+      {isSearchMenuOpen && (
+        <SearchMenu isClosing={isSearchMenuClosing} />
+      )}
+      {isArrowOpen && (
+        <HideIcon isClosing={isArrrowClosing} />
+      )}
       <div className='taskbar'>
         <div className='icon-container'>
           <div className="icon-wrapper">
-            <img src="../assets/win11.png" className='icon win-icon' />
+            <img src="../assets/win11.png" className='icon win-icon' onClick={HandleClikStartMenu} />
           </div>
           <div className="search-wrapper">
             <span className="search-icon">🔍</span>
-            <input type="text" placeholder="Search" ref={inputRef} className="input" />
+            <input type="text" placeholder="Search" ref={inputRef} className="input" onClick={HandleClikInput} />
           </div>
           <div className="icon-wrapper">
-            <img src='../assets/file explorer.png' className='icon' onClick={() => setIsFileExplorerOpen(true)} />
+            <img src='../assets/file explorer.png' className='icon' onClick={HandleClikFileExplorer} />
           </div>
           <div className="right-option">
-            <p>{sekundy} {data}</p>
+            <div className='hide-icon'>
+              <img img src='../assets/arrowup.png' alt='arrow' onClick={ArrowClick}/>
+            </div>
+
+            <div className='wifi-sound'>
+              <img src='../assets/middlesound.png' alt='sound'/>
+              <img src='../assets/wifi.png' alt='wifi'/>
+            </div>
+            <div className="time-date">
+              <span className="time-text">{sekundy}</span>
+              <span className="date-text">{data}</span>
+            </div>
+            
           </div>
         </div>
       </div>

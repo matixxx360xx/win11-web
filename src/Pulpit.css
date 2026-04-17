@@ -128,8 +128,73 @@ input:hover {
 .right-option {
   cursor: default;
   position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
   color: white;
-  left: 100%;
-  text-align: right;
-  transform: translateX(-100%);
+}
+
+.time-date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.05;
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.time-date:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+
+}
+
+.time-text {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.date-text {
+  font-size: 11px;
+  opacity: 0.75;
+  margin-top: 2px;
+}
+
+
+
+.wifi-sound {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+}
+
+.wifi-sound:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.wifi-sound img {
+  width: 24px;
+  height: 24px;
+}
+
+
+
+.hide-icon {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+} 
+
+.hide-icon:hover{
+   background-color: rgba(255, 255, 255, 0.08);
+}
+.hide-icon img{
+  width: 16px;
+  height: 16px;
 }

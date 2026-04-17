@@ -10,27 +10,26 @@ export default function FileExplorer({ onClose }) {
   useEffect(() => {
     const openTimeout = setTimeout(() => {
       setIsOpen(true);
-    }, 10); 
+    }, 10);
     return () => clearTimeout(openTimeout);
   }, []);
-
 
   const handleCloseTrigger = () => {
     setIsClosing(true);
     setIsOpen(false);
 
- 
+
     setTimeout(() => {
-      onClose(); 
-    }, 150); 
+      onClose();
+    }, 150);
   };
 
-  
-  let classNames = 'file-explorer'; 
-  
-  if(isClosing) {
+
+  let classNames = 'file-explorer';
+
+  if (isClosing) {
     classNames += ' closing';
-  }else if(isOpen) {
+  } else if (isOpen) {
     classNames += ' open';
   }
 

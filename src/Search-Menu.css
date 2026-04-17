@@ -1,0 +1,27 @@
+.SearchMenu{
+      position: relative;
+    top: 50px;
+    width: 300px;
+    height: 500px;
+    background-color: black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    opacity: 0;
+
+    transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
+}
+
+.SearchMenu.open {
+    opacity: 1;
+    transform: scale(2);
+}
+
+
+.SearchMenu.closing {
+    opacity: 0;
+    transform: scale(0.20);
+    
+}

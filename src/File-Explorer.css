@@ -9,10 +9,10 @@
     justify-content: flex-end;
     align-items: flex-start;
 
-   opacity: 0;
-   
+    opacity: 0;
+
     transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
-  
+
 }
 
 
@@ -27,9 +27,11 @@
     opacity: 0;
     transform: scale(0.90);
 }
+
 .top-bar {
     position: absolute;
 }
+
 .Close {
     background-color: black;
     color: white;
@@ -62,7 +64,7 @@
     background-color: rgba(129, 129, 129, 0.400);
 }
 
-.FullScreen{
+.FullScreen {
     background-color: black;
     color: white;
     width: 42px;
@@ -70,9 +72,11 @@
     outline: none;
     border: none;
     cursor: 'pointer';
-    transition: ease-in-out 100ms;
+    transform: translateY(-1px);
+    transition: background-color 100ms ease-in-out;
 }
 
-.FullScreen:hover{
-     background-color: rgba(129, 129, 129, 0.400);
+.FullScreen:hover {
+    background-color: rgba(129, 129, 129, 0.400);
+    
 }
