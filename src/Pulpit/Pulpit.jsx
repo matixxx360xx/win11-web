@@ -1,9 +1,12 @@
 import { useActionState, useEffect, useRef, useState } from 'react';
 import './Pulpit.css'
-import FileExplorer from './File-Explorer';
-import StartMenu from './Start-Men';
-import SearchMenu from './Search-Menu';
-import HideIcon from './Hide-icon';
+
+
+import FileExplorer from '../FileExplorer/File-Explorer';
+import StartMenu from '../Menu/Start-Men';
+import SearchMenu from '../Menu/Search-Menu';
+import HideIcon from '../HideIcon/Hide-icon'; 
+import SimpleOption from '../Menu/Simple-Option';
 
 function Pulpit() {
   const inputRef = useRef(null);
@@ -57,6 +60,10 @@ function Pulpit() {
   const [isArrowOpen, setIsArrowOpen] = useState(false);
   const [isArrrowClosing, setIsArrowClosing] = useState(false);
 
+  const [isSimpleOptionOpen, setIsSimpleOptionOpen] = useState(false);
+  const [isSimpleOptionClosing, setIsSimpleOptionClosing] = useState(false);
+
+
   function HandleClikFileExplorer() {
     const fileExplorer = document.querySelector('.file-explorer');
     if (fileExplorer) {
@@ -90,15 +97,33 @@ function Pulpit() {
     }
   }
 
-  function ArrowClick(){
-    if (isArrowOpen){
+  const [rotated, setRotated] = useState(false);
+  function ArrowClick() {
+    setRotated(prev => !prev);
+    if (isArrowOpen) {
       setIsArrowClosing(true);
+
       setTimeout(() => {
-          setIsArrowOpen(false);
-          setIsArrowClosing(false);
-      },150);
-    } else{
+        setIsArrowOpen(false);
+        setIsArrowClosing(false);
+      }, 150);
+    } else {
       setIsArrowOpen(true);
+    }
+
+  }
+
+  function HandleClickSimpleOption() {
+    if (isSimpleOptionOpen) {
+      setIsSimpleOptionClosing(true);
+
+      setTimeout(() => {
+        setIsSimpleOptionOpen(false);
+        setIsSimpleOptionClosing(false);
+      }, 150);
+
+    } else {
+      setIsSimpleOptionOpen(true);
     }
   }
 
@@ -116,6 +141,9 @@ function Pulpit() {
       {isArrowOpen && (
         <HideIcon isClosing={isArrrowClosing} />
       )}
+      {isSimpleOptionOpen && (
+        <SimpleOption isClosing={isSimpleOptionClosing} />
+      )}
       <div className='taskbar'>
         <div className='icon-container'>
           <div className="icon-wrapper">
@@ -130,18 +158,18 @@ function Pulpit() {
           </div>
           <div className="right-option">
             <div className='hide-icon'>
-              <img img src='../assets/arrowup.png' alt='arrow' onClick={ArrowClick}/>
+              <img className={`arrow ${rotated ? "rotated" : ""}`} src='../assets/arrowup.png' alt='arrow' onClick={ArrowClick} />
             </div>
 
-            <div className='wifi-sound'>
-              <img src='../assets/middlesound.png' alt='sound'/>
-              <img src='../assets/wifi.png' alt='wifi'/>
+            <div className='wifi-sound' onClick={HandleClickSimpleOption}>
+              <img src='../assets/middlesound.png' alt='sound' />
+              <img src='../assets/wifi.png' alt='wifi' />
             </div>
             <div className="time-date">
               <span className="time-text">{sekundy}</span>
               <span className="date-text">{data}</span>
             </div>
-            
+
           </div>
         </div>
       </div>

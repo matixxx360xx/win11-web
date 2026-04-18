@@ -136,6 +136,7 @@ input:hover {
   color: white;
 }
 
+
 .time-date {
   display: flex;
   flex-direction: column;
@@ -197,4 +198,12 @@ input:hover {
 .hide-icon img{
   width: 16px;
   height: 16px;
+}
+
+.arrow {
+  transition: transform 150ms ease-in-out;
+}
+
+.rotated {
+  transform: rotate(180deg);
 }

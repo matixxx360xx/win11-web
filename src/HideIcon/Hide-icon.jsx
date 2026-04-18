@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import './Hide-icon.css';
 
-export default function HideIcon({ onClose }) {
+export default function HideIcon({ isClosing }) {
 
    const [isOpen, setIsOpen] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
+ 
 
   useEffect(() => {
     const openTimeout = setTimeout(() => {
