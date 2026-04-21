@@ -1,13 +1,28 @@
 .Simple-Option {
     background-color: black;
+    box-shadow: 0 -0.2px 1.5px white;
     width: 350px;
-    height: 400px;
+    height: 350px;
+    padding: 5px;
     position: fixed;
     bottom: 80px;
     right: 10px;
     border-radius: 6px;
     background-color: rgba(48, 48, 48, 0.7);
     transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+
+
+.wifi-wrapper,
+.bluetooth-wrapper {
+    margin: 0;
 }
 
 .Simple-Option.open {
@@ -19,4 +34,367 @@
 .Simple-Option.closing {
     opacity: 0;
     transform: scale(0.90);
+}
+
+.wifi-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.wifi-wrapper div {
+    margin: 0;
+    padding: 0;
+}
+
+.wifi-on {
+    background-color: rgba(255, 255, 255, 0.158);
+    box-shadow: 0 -0.2px 2px white;
+    width: 50px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.wifi-on img {
+    width: 20px;
+    height: 20px;
+}
+
+.wifi-on:hover {
+    background-color: rgba(255, 255, 255, 0.192);
+}
+
+.show-Wifi {
+    background-color: rgb(101, 199, 255);
+    width: 50px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+
+.show-Wifi img {
+    width: 14px;
+    height: 14px;
+    transform: rotate(90deg);
+    filter: brightness(0) invert(0);
+}
+
+
+
+.wifi-on.true {
+    background-color: rgb(101, 199, 255);
+    box-shadow: none;
+}
+
+
+.wifi-on.true img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(0);
+}
+
+.wifi-on.true:hover {
+    background-color: rgb(167, 223, 255);
+}
+
+
+
+
+
+
+
+.bluetooth-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.bluetooth-wrapper div {
+    margin: 0;
+    padding: 0;
+}
+
+.bluetooth-on {
+    background-color: rgba(255, 255, 255, 0.158);
+    box-shadow: 0 -0.2px 2px white;
+    width: 50px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.bluetooth-on img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.show-bluetooth {
+    background-color: rgba(255, 255, 255, 0.158);
+    box-shadow: 0 -0.2px 2px white;
+    width: 50px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+
+.show-bluetooth img {
+    width: 14px;
+    height: 14px;
+    transform: rotate(90deg);
+    filter: brightness(1);
+}
+
+.bluetooth-on:hover {
+    background-color: rgba(255, 255, 255, 0.192);
+}
+
+.show-bluetooth:hover {
+    background-color: rgba(255, 255, 255, 0.192);
+}
+
+.bluetooth-on.true {
+    background-color: rgb(101, 199, 255);
+    box-shadow: none;
+
+}
+
+.bluetooth-on.true img {
+    filter: brightness(0) invert(0);
+}
+
+.show-bluetooth.true {
+    background-color: rgb(101, 199, 255);
+    box-shadow: none;
+
+}
+
+.show-bluetooth.true img {
+    filter: brightness(0) invert(0);
+}
+
+.bluetooth-on.true:hover {
+    background-color: rgb(167, 223, 255);
+}
+
+.show-bluetooth.true:hover {
+    background-color: rgb(167, 223, 255);
+}
+
+
+.airpalne-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.airpalne-wrapper div {
+    margin: 0;
+    padding: 0;
+}
+
+.air-plane {
+    background-color: rgba(255, 255, 255, 0.158);
+    box-shadow: 0 -0.2px 2px white;
+    width: 100px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.air-plane img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.air-plane:hover {
+    background-color: rgba(255, 255, 255, 0.192);
+}
+
+.air-plane.true {
+    background-color: rgb(101, 199, 255);
+    box-shadow: none;
+}
+
+.air-plane.true img {
+    filter: brightness(1);
+}
+
+.air-plane.true:hover {
+    background-color: rgb(167, 223, 255);
+}
+
+
+
+.hotspot-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 0px;
+    margin-top: 20px;
+}
+
+.hotspot-wrapper div {
+    margin: 0;
+    padding: 0;
+}
+
+.hot-spot {
+    background-color: rgba(255, 255, 255, 0.158);
+    box-shadow: 0 -0.2px 2px white;
+    width: 100px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.hot-spot img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.hot-spot:hover {
+    background-color: rgba(255, 255, 255, 0.192);
+}
+
+.hot-spot.true {
+    background-color: rgb(101, 199, 255);
+    box-shadow: none;
+}
+
+.hot-spot.true img {
+    filter: brightness(1);
+}
+
+.hot-spot.true:hover {
+    background-color: rgb(167, 223, 255);
+}
+
+
+
+.energysaving-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.energysaving-wrapper div {
+    margin: 0;
+    padding: 0;
+}
+
+.energy-saving {
+    background-color: rgba(255, 255, 255, 0.158);
+    box-shadow: 0 -0.2px 2px white;
+    width: 100px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.energy-saving img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.energy-saving:hover {
+    background-color: rgba(255, 255, 255, 0.192);
+}
+
+.energy-saving.true {
+    background-color: rgb(101, 199, 255);
+    box-shadow: none;
+}
+
+.energy-saving.true img {
+    filter: brightness(1);
+}
+
+.energy-saving.true:hover {
+    background-color: rgb(167, 223, 255);
+}
+
+
+
+
+.nightmode-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 0px;
+    margin-top: 20px;
+}
+
+.nightmode-wrapper div {
+    margin: 0;
+    padding: 0;
+}
+
+.night-mode {
+    background-color: rgba(255, 255, 255, 0.158);
+    box-shadow: 0 -0.2px 2px white;
+    width: 100px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.night-mode img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.night-mode:hover {
+    background-color: rgba(255, 255, 255, 0.192);
+}
+
+.night-mode.true {
+    background-color: rgb(101, 199, 255);
+    box-shadow: none;
+}
+
+.night-mode.true img {
+    filter: brightness(1);
+}
+
+.night-mode.true:hover {
+    background-color: rgb(167, 223, 255);
+}
+
+.line {
+    margin-top: 30px;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 0 -0.2px 1.5px white;
+    
 }
