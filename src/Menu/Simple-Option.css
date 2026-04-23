@@ -18,7 +18,16 @@
     gap: 5px;
 }
 
-
+.Simple-Option::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.3);;
+    border-radius: 0 0 6px 6px;
+}
 
 .wifi-wrapper,
 .bluetooth-wrapper {
@@ -70,7 +79,8 @@
 }
 
 .show-Wifi {
-    background-color: rgb(101, 199, 255);
+    background-color: rgba(255, 255, 255, 0.158);
+    box-shadow: 0 -0.2px 2px white;
     width: 50px;
     height: 45px;
     display: flex;
@@ -80,15 +90,16 @@
     border-bottom-right-radius: 5px;
 }
 
-
 .show-Wifi img {
     width: 14px;
     height: 14px;
     transform: rotate(90deg);
-    filter: brightness(0) invert(0);
+    filter: brightness(0) invert(1);
 }
 
-
+.show-Wifi:hover {
+    background-color: rgba(255, 255, 255, 0.192);
+}
 
 .wifi-on.true {
     background-color: rgb(101, 199, 255);
@@ -105,6 +116,23 @@
 .wifi-on.true:hover {
     background-color: rgb(167, 223, 255);
 }
+
+.show-Wifi.true {
+    background-color: rgb(101, 199, 255);
+    box-shadow: none;
+}
+
+
+.show-Wifi.true img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(0);
+}
+
+.show-Wifi.true:hover {
+    background-color: rgb(167, 223, 255);
+}
+
 
 
 
@@ -396,5 +424,68 @@
     height: 1px;
     background-color: rgba(255, 255, 255, 0);
     box-shadow: 0 -0.2px 1.5px white;
-    
+
 }
+
+
+.brightness-sound-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 0px;
+    margin-top: 25px;
+    gap: 10px;
+}
+
+.brightness-sound-wrapper div {
+    margin: 0;
+    padding: 0;
+}
+
+.brightness-sound-wrapper img {
+    margin-left: 15px;
+    width: 25px;
+    height: 25px;
+    filter: brightness(0) invert(1);
+     transition: ease-in-out 
+}
+
+
+input[type="range"] {
+    width: 250px;
+    margin: 0;
+    margin-bottom: 5px;
+    -webkit-appearance: none;
+    appearance: none;
+
+    height: 5px;
+    background: linear-gradient(to right,
+            rgb(101, 199, 255) 0%,
+            rgb(101, 199, 255) var(--value, 50%),
+            #ddd var(--value, 50%),
+            #ddd 100%);
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+     width: 19px;  
+    height: 19px;
+    background: rgb(101, 199, 255);
+    border: 4px solid rgba(54, 54, 54, 0.9);;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: ease-in-out 100ms;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    border: 2px solid rgba(54, 54, 54, 0.9);
+}
+
+#sound img {
+  transition: ease-in-out 2S;
+}
+
+

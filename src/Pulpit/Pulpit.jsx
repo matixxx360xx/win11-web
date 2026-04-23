@@ -63,6 +63,8 @@ function Pulpit() {
   const [isSimpleOptionOpen, setIsSimpleOptionOpen] = useState(false);
   const [isSimpleOptionClosing, setIsSimpleOptionClosing] = useState(false);
 
+  const [valueSound, setValueSound] = useState('middlesound.png');
+
 
   function HandleClikFileExplorer() {
     const fileExplorer = document.querySelector('.file-explorer');
@@ -142,7 +144,7 @@ function Pulpit() {
         <HideIcon isClosing={isArrrowClosing} />
       )}
       {isSimpleOptionOpen && (
-        <SimpleOption isClosing={isSimpleOptionClosing} />
+        <SimpleOption isClosing={isSimpleOptionClosing} onSoundChange={setValueSound}/>
       )}
       <div className='taskbar'>
         <div className='icon-container'>
@@ -162,7 +164,7 @@ function Pulpit() {
             </div>
 
             <div className='wifi-sound' onClick={HandleClickSimpleOption}>
-              <img src='../assets/middlesound.png' alt='sound' />
+              <img src={`../assets/${valueSound}`} alt='sound' />
               <img src='../assets/wifi.png' alt='wifi' />
             </div>
             <div className="time-date">
