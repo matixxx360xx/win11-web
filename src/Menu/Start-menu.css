@@ -1,27 +1,25 @@
 .Menu{
-      position: relative;
-    top: 50px;
-    width: 300px;
-    height: 500px;
+    position: fixed;
+    transform:translateY(1000px);
+    bottom: 80px;
+    width: 850px;
+    height: 720px;
     background-color: black;
     border-radius: 5px;
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
+    justify-self: center;
 
-    opacity: 0;
 
-    transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
+    transition: opacity 150ms ease-out, transform 150ms ease-in;
 }
 
 .Menu.open {
-    opacity: 1;
-    transform: scale(2);
+    transform:translateY(-5px);
 }
 
 
 .Menu.closing {
-    opacity: 0;
-    transform: scale(0.20);
+    
+    transform:translateY(1000px);
     
 }

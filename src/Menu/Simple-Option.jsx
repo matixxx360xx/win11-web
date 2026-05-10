@@ -31,6 +31,11 @@ export default function SimpleOption({ isClosing, onSoundChange }) {
   const [isNightMode, setIsNightMode] = useState(false);
   const [valueSound, setValueSound] = useState("middlesound.png");
   const [brightnessRotation, setBrightnessRotation] = useState(0);
+  const [brightnessValue, setBrightnessValue] = useState(0);
+  const [brightness, setBrightness] = useState(50);
+  const [showBrightness, setShowBrightness] = useState(false);
+  const [showSound, setShowSound] = useState(false);
+  const [sound, setSound] = useState(50);
 
   const classNamesbluetooth = isOnBluetooth ? 'bluetooth-on true' : 'bluetooth-on';
   function HandlebluetoothOn() {
@@ -58,7 +63,7 @@ export default function SimpleOption({ isClosing, onSoundChange }) {
   }
 
   const classNamesShowWifi = isShowWifiOn ? 'show-Wifi true' : 'show-Wifi';
-    useEffect(() => {
+  useEffect(() => {
     if (isWifiOn) {
       setIsShowWifiOn(true);
     } else {
@@ -88,7 +93,9 @@ export default function SimpleOption({ isClosing, onSoundChange }) {
 
   function HandleChangeSound(e) {
     const value = (e.target.value / e.target.max) * 100;
-    console.log(value)
+    const max = Number(e.target.max);
+    const percent = value / max;
+    setSound(percent);
     e.target.style.setProperty('--value', `${value}%`);
 
     if (value == 0) {
@@ -108,9 +115,30 @@ export default function SimpleOption({ isClosing, onSoundChange }) {
 
   function HandleChangeBrightness(e) {
     const value = (e.target.value / e.target.max) * 100;
+    const max = Number(e.target.max);
+    const percent = value / max;
+    setBrightness(percent);
+    setBrightnessValue(value);
     e.target.style.setProperty('--value', `${value}%`);
     setBrightnessRotation(value * 3.6 - 180);
   }
+
+  function HandleMouseButtonDownB() {
+    setShowBrightness(true);
+  }
+
+  function HandleMouseButtonUpB() {
+    setShowBrightness(false);
+  }
+  
+  function HandleMouseButtonDownS() {
+    setShowSound(true);
+  }
+
+  function HandleMouseButtonUpS() {
+    setShowSound(false);
+  }
+
   return (
     <div className={classNames}>
 
@@ -155,12 +183,35 @@ export default function SimpleOption({ isClosing, onSoundChange }) {
       <div className='line'></div>
 
       <div className='brightness-sound-wrapper'>
-        <label id='brightness'><img style={{ transform: `rotate(${brightnessRotation}deg)` }} src='./assets/sun.png' /></label>
-        <input type='range' id='brightness' className='brightness' min={0} max={100} onChange={HandleChangeBrightness} />
+
+        <label id='brightness '>
+          <img style={{ transform: `rotate(${brightnessRotation}deg)` }} src='./assets/sun.png' />
+        </label>
+
+        <div className='range-wrapper'>
+
+          <div className={`brightness-value ${showBrightness ? "active" : ""}`} style={{ left: `calc(${brightness * 100}% + (${8 - brightness * 16}px))` }}>
+            {Math.round(brightnessValue)}
+          </div>
+
+
+          <input type='range' id='brightness' className='brightness' min={0} max={100} onChange={HandleChangeBrightness} onMouseDown={HandleMouseButtonDownB} onMouseUp={HandleMouseButtonUpB} />
+
+        </div>
+
       </div>
+
       <div className='brightness-sound-wrapper'>
-        <label id='sound'><img className='SoundImage' src={`./assets/${valueSound}`} /></label>
-        <input type='range' id='sound' className='sound' min={0} max={100} onChange={HandleChangeSound} />
+
+        <label id='sound'>
+          <img className='SoundImage' src={`./assets/${valueSound}`} />
+        </label>
+        <div className='range-wrapper'>
+            <div className={`brightness-value ${showSound ? "active" : ""}`} style={{ left: `calc(${sound * 100}% + (${8 - sound * 16}px))` }}>
+            {Math.round(sound * 100)}
+          </div>
+          <input type='range' id='sound' className='sound' min={0} max={100} onChange={HandleChangeSound} onMouseDown={HandleMouseButtonDownS} onMouseUp={HandleMouseButtonUpS} />
+        </div>
       </div>
 
     </div>

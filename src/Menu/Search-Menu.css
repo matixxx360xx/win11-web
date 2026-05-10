@@ -1,13 +1,12 @@
 .SearchMenu{
-      position: relative;
-    top: 50px;
-    width: 300px;
-    height: 500px;
+    position: fixed;
+    transform:translateY(1000px);
+    width: 750px;
+    height: 600px;
     background-color: black;
     border-radius: 5px;
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
+    justify-self: center;
 
     opacity: 0;
 
@@ -16,12 +15,12 @@
 
 .SearchMenu.open {
     opacity: 1;
-    transform: scale(2);
+    transform:translateY(220px);
 }
 
 
 .SearchMenu.closing {
     opacity: 0;
-    transform: scale(0.20);
+    transform:translateY(1000px);
     
 }
