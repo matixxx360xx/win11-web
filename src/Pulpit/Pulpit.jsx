@@ -7,6 +7,7 @@ import StartMenu from '../Menu/Start-Men';
 import SearchMenu from '../Menu/Search-Menu';
 import HideIcon from '../HideIcon/Hide-icon'; 
 import SimpleOption from '../Menu/Simple-Option';
+import Calendar from '../Menu/Calendar';
 
 function Pulpit() {
   const inputRef = useRef(null);
@@ -64,6 +65,9 @@ function Pulpit() {
   const [isSimpleOptionClosing, setIsSimpleOptionClosing] = useState(false);
 
   const [valueSound, setValueSound] = useState('middlesound.png');
+
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [isCalendarClosing, setIsCalendarClosing] = useState(false);
 
 
   function HandleClikFileExplorer() {
@@ -129,6 +133,20 @@ function Pulpit() {
     }
   }
 
+  function HandleClickCalendar() {
+    if (isCalendarOpen) {
+      setIsCalendarClosing(true);
+
+      setTimeout(() => {
+        setIsCalendarOpen(false);
+        setIsCalendarClosing(false);
+      }, 150);
+
+    } else {
+      setIsCalendarOpen(true);
+    }
+  }
+
   return (
     <>
       {isFileExplorerOpen && (
@@ -146,6 +164,10 @@ function Pulpit() {
       {isSimpleOptionOpen && (
         <SimpleOption isClosing={isSimpleOptionClosing} onSoundChange={setValueSound}/>
       )}
+      {isCalendarOpen && (
+        <Calendar isClosing={isCalendarClosing} />
+      )}
+      
       <div className='taskbar'>
         <div className='icon-container'>
           <div className="icon-wrapper">
@@ -167,7 +189,7 @@ function Pulpit() {
               <img src={`../assets/${valueSound}`} alt='sound' />
               <img src='../assets/wifi.png' alt='wifi' />
             </div>
-            <div className="time-date">
+            <div className="time-date" onClick={HandleClickCalendar}>
               <span className="time-text">{sekundy}</span>
               <span className="date-text">{data}</span>
             </div>
