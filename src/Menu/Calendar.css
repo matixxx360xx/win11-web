@@ -48,13 +48,13 @@
     font-size: 0.9rem;
     height: 30px;
     padding: 10px 10px;
-    gap: 10px
+    gap: 5px
 }
 
 
 
 .calendar-body {
-    margin-top: 50px;
+    margin-top: 40px;
     z-index: 1;
     position: relative;
     padding: 15px 10px;
@@ -62,14 +62,30 @@
 }
 
 .calendar-day-year{
-    
     display: inline-flex;
     justify-content: flex-start;
     color: white;
     font-size: 1rem;
     height: 30px;
-    padding: 5px 0 20px 10px;
+    padding: 0px 0 20px 5px;
     gap: 10px
+}
+
+.head-day-year{
+    width: 240px;
+    gap: 10px
+}
+
+.head-day-year:hover::before{
+    content: "";
+    z-index: -1;
+    top: 9px;
+    left: 10px;
+    border-radius: 5px;
+    position: absolute;
+    width: 240px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.1); 
 }
 
 .weekdays-row, .days-grid {
@@ -123,6 +139,21 @@
     background-color: rgb(130, 209, 255);
 }
 
+.days-grid{
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.days-grid.animate-down{
+    transform: translateY(40px);
+    opacity: 0;
+}
+
+.days-grid.animate-up{
+    transform: translateY(-40px);
+    opacity: 0;
+}
+
 .change-month{
     display: flex;
     position: absolute;
@@ -148,9 +179,86 @@
 }
 
 .bottom:hover{
-    background-color: rgba(94, 94, 94, 0.781);
+    background-color: rgba(255, 255, 255, 0.1); 
 }
 
 .top:hover{
-    background-color: rgba(94, 94, 94, 0.781);
+    background-color: rgba(255, 255, 255, 0.1); 
+}
+
+.bottom:active, .top:active{
+    background-color: rgba(94, 94, 94, 0.452);
+   
+}
+
+.selection-month{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    overflow-y: auto;
+    max-height: 300px;
+    gap: 29px;
+    scrollbar-width: none; 
+}
+
+.month-cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+}
+
+.month-cell.today {
+    color: black;
+    background-color: rgb(101, 199, 255);
+    font-weight: bold;
+}
+
+.month-cell.today:hover {
+    color: black;
+    background-color: rgb(83, 192, 255);
+    font-weight: bold;
+}
+.month-cell:hover{
+    background-color: rgba(255, 255, 255, 0.1); 
+    cursor: pointer;
+}
+
+.selection-year{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    overflow-y: auto;
+    max-height: 300px;
+    gap: 29px;
+    scrollbar-width: none; 
+}
+.year-cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+}
+
+.year-cell:hover{
+    background-color: rgba(255, 255, 255, 0.1); 
+    cursor: pointer;
+}
+
+.year-cell.today{
+    color: black;
+    background-color: rgb(101, 199, 255);
+    font-weight: bold;
+}
+
+.year-cell.today:hover {
+    color: black;
+    background-color: rgb(83, 192, 255);
+    font-weight: bold;
 }
